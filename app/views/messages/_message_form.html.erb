@@ -1,6 +1,6 @@
 <div class="message-input">
-  <%= form_for(@message) do |f| %>
-    <%= f.text_area :content %>
+  <%= form_for(@message, remote: true) do |f| %>
+    <%= f.text_area :content, placeholder: "To comment an  image comment like this ![alt text](image_link)" %>
     <%= f.submit "Send" %>
   <% end %>
 </div>
