@@ -1,0 +1,5 @@
+<div style="text-indent: 20px;" class="posts" data-id="<%= current_user.id %>">
+  <% if @posts.any? %>
+    <%= render @posts %>
+  <% end %>
+</div>

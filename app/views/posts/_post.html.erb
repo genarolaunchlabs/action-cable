@@ -1,0 +1,24 @@
+<div id="id<%= post.id %>">
+  <p><strong><%= post.user.username.titleize %></strong></p>
+  <br>
+  <p style="text-indent: 50px;"><%= post.content %></p>
+
+  <div class="deletePost">
+    <% if post.user == current_user %>
+      <%= link_to 'Destroy', post, method: :delete, remote: true, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+  </div>
+  <div class="postComments">
+  </div>
+  <br>
+  <br>
+
+  <br>
+  <br>
+  <!-- <tr>
+    <td><%= post.content %></td>
+    <td><%= link_to 'Show', post %></td>
+    <td><%= link_to 'Edit', edit_post_path(post) %></td>
+    <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr> -->
+</div>

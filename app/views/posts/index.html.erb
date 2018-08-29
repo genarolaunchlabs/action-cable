@@ -1,0 +1,15 @@
+<div id="posts">
+  <p id="notice"><%= notice %></p>
+  <br>
+  <br>
+  <%= render 'form', post: @post %>
+  <br>
+  <br>
+  <h1>Posts</h1>
+  <br>
+  <br>
+  <%= render 'posts' %>
+  <br>
+
+  <%= link_to 'New Post', new_post_path %>
+</div>

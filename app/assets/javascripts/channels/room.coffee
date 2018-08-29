@@ -1,6 +1,7 @@
 App.room = App.cable.subscriptions.create "RoomChannel",
   connected: ->
     console.log "you are connected"
+    @install()
 
   disconnected: ->
     console.log "you are disconnected"
@@ -11,9 +12,29 @@ App.room = App.cable.subscriptions.create "RoomChannel",
       $('#messages-table').append data.message
       scroll_bottom()
 
-$(document).on 'turbolinks:load', ->
-  submit_message()
-  scroll_bottom()
+    if data.typing
+      $('.typing').text(data.username+' is typing...')
+      setTimeout ( ->
+        $('.typing').text('')
+      ), 1000
+
+
+  typing: ->
+    @perform("typing")
+
+
+  install: ->
+    $(document).ready =>
+      submit_message()
+      scroll_bottom()
+
+      $( "#message_content" ).keyup =>
+        if $( "#message_content" ).val()
+          console.log "typing"
+          @typing()
+
+scroll_bottom = () ->
+  $('#messages').scrollTop($('#messages')[0].scrollHeight)
 
 submit_message = () ->
   $('#message_content').on 'keydown', (event) ->
@@ -22,5 +43,4 @@ submit_message = () ->
       event.target.value = ""
       event.preventDefault()
 
-scroll_bottom = () ->
-  $('#messages').scrollTop($('#messages')[0].scrollHeight)
+
