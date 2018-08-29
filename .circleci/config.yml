@@ -62,7 +62,7 @@ jobs:
 
       - deploy:
           command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+            if [ "${CIRCLE_BRANCH}" == "action-cable" ]; then
               ssh-keyscan -H 206.189.223.233 >> ~/.ssh/known_hosts
               git remote add dokku dokku@206.189.223.233:action-cable
               git push dokku master
